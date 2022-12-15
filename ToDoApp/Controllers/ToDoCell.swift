@@ -36,7 +36,7 @@ extension ToDoCell {
     func configurecCellUIView() {
         contentView.addSubview(cellUIView)
         cellUIView.translatesAutoresizingMaskIntoConstraints = false
-        cellUIView.backgroundColor = .systemGray3
+//        cellUIView.backgroundColor = .systemGray3
         NSLayoutConstraint.activate([
             cellUIView.heightAnchor.constraint(equalToConstant: 70),
             cellUIView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -73,6 +73,9 @@ extension ToDoCell {
         ])
     }
     
+    func configure(cell: ToDoCellModel) {
+        cellLabel.text = cell.cellLabelText
+        checkMark.isHidden = cell.checkMarkisHidden
+    } 
 
-    
 }

@@ -30,6 +30,7 @@ extension ToDoListVC {
     
     func configureNavigationBar() {
         navigationItem.title = "ToDo"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButtonDidTapped))
         navigationController?.navigationBar.backgroundColor = UIColor(red: 0.7, green: 0.5, blue: 1, alpha: 1)
     }
 }
