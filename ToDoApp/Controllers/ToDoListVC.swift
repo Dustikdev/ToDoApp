@@ -11,19 +11,17 @@ class ToDoListVC: UIViewController {
     
     let defaults = UserDefaults.standard
     let toDoListTableView = UITableView()
-    var exampleArr = [String]()
     var toDoArray = [ToDoCellModel]()
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathExtension("Items.plist")
+    let encoder = Coder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        toDoArray = [(ToDoCellModel(cellLabelText: "aaaaa", checkMarkisHidden: true)), (ToDoCellModel(cellLabelText: "bbbbb", checkMarkisHidden: true)), (ToDoCellModel(cellLabelText: "ccccc", checkMarkisHidden: true)), (ToDoCellModel(cellLabelText: "ddddd", checkMarkisHidden: true))]
-//        if let items = defaults.array(forKey: "textArray") as? [String] {
-//            exampleArr = items
-//        }
         configureUI()
         toDoListTableView.dataSource = self
         toDoListTableView.delegate = self
         toDoListTableView.register(ToDoCell.self, forCellReuseIdentifier: Constants.CellIndentificators.toDoCellIdentificator)
+        toDoArray = encoder.decode(url: dataFilePath)
     }
     
     @objc func addButtonDidTapped() {
@@ -31,9 +29,11 @@ class ToDoListVC: UIViewController {
         let action = UIAlertAction(title: "Add Item", style: .default) { action in
             if let textField = alert.textFields?.first {
                 if let text = textField.text {
-                    self.exampleArr.append(text)
-                    self.defaults.set(self.exampleArr, forKey: "textArray")
-                    print(text)
+                    let newItem = ToDoCellModel()
+                    newItem.cellLabelText = text
+                    self.toDoArray.append(newItem)
+//                    print(self.toDoArray.count)
+                    self.encoder.encode(arr: self.toDoArray, url: self.dataFilePath)
                     self.toDoListTableView.reloadData()
                 }
             }
@@ -54,19 +54,23 @@ extension ToDoListVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIndentificators.toDoCellIdentificator) as! ToDoCell
-        cell.cellLabel.text = toDoArray[indexPath.row].cellLabelText
+        cell.configureForCellForRowAt(cell: toDoArray[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! ToDoCell
         tableView.deselectRow(at: indexPath, animated: true)
-        if cell.cellisSelected {
-            cell.checkMark.isHidden = true
-            cell.cellisSelected = false
-        } else {
-            cell.checkMark.isHidden = false
-            cell.cellisSelected = true
-        }
+        toDoArray[indexPath.row].checkMarkisHidden = !toDoArray[indexPath.row].checkMarkisHidden
+        encoder.encode(arr: toDoArray, url: dataFilePath)
+        tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+     return 70
     }
 }

@@ -16,6 +16,7 @@
 		7910F3522949EDC4008E75C3 /* ToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7910F3512949EDC4008E75C3 /* ToDoCell.swift */; };
 		7910F3542949EDFA008E75C3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7910F3532949EDFA008E75C3 /* Constants.swift */; };
 		7910F358294A2CB3008E75C3 /* ToDoCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7910F357294A2CB3008E75C3 /* ToDoCellModel.swift */; };
+		7910F35A294CC77F008E75C3 /* Coder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7910F359294CC77F008E75C3 /* Coder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		7910F3512949EDC4008E75C3 /* ToDoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCell.swift; sourceTree = "<group>"; };
 		7910F3532949EDFA008E75C3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7910F357294A2CB3008E75C3 /* ToDoCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCellModel.swift; sourceTree = "<group>"; };
+		7910F359294CC77F008E75C3 /* Coder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				7910F3532949EDFA008E75C3 /* Constants.swift */,
 				7910F3372949E9A3008E75C3 /* AppDelegate.swift */,
 				7910F3392949E9A3008E75C3 /* SceneDelegate.swift */,
+				7910F359294CC77F008E75C3 /* Coder.swift */,
 				7910F34D2949EA95008E75C3 /* Controllers */,
 				7910F355294A2C96008E75C3 /* Model */,
 				7910F3402949E9A5008E75C3 /* Assets.xcassets */,
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7910F35A294CC77F008E75C3 /* Coder.swift in Sources */,
 				7910F34C2949EA28008E75C3 /* ToDoListVC.swift in Sources */,
 				7910F3382949E9A3008E75C3 /* AppDelegate.swift in Sources */,
 				7910F33A2949E9A3008E75C3 /* SceneDelegate.swift in Sources */,

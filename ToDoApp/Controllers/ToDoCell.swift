@@ -37,12 +37,15 @@ extension ToDoCell {
         contentView.addSubview(cellUIView)
         cellUIView.translatesAutoresizingMaskIntoConstraints = false
 //        cellUIView.backgroundColor = .systemGray3
+//        let botConstraint = cellUIView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+//        botConstraint.priority = UILayoutPriority(999)
         NSLayoutConstraint.activate([
             cellUIView.heightAnchor.constraint(equalToConstant: 70),
             cellUIView.topAnchor.constraint(equalTo: contentView.topAnchor),
             cellUIView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             cellUIView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             cellUIView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            
         ])
         
     }
@@ -73,7 +76,7 @@ extension ToDoCell {
         ])
     }
     
-    func configure(cell: ToDoCellModel) {
+    func configureForCellForRowAt(cell: ToDoCellModel) {
         cellLabel.text = cell.cellLabelText
         checkMark.isHidden = cell.checkMarkisHidden
     } 

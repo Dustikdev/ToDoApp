@@ -19,6 +19,7 @@ extension ToDoListVC {
     
     func configureToDoListTableView() {
         view.addSubview(toDoListTableView)
+//        toDoListTableView.invalidateIntrinsicContentSize()
         toDoListTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             toDoListTableView.topAnchor.constraint(equalTo: view.topAnchor),
