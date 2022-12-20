@@ -7,11 +7,11 @@
 
 import Foundation
 
-class ToDoCellModel: Codable {
-    
-    var cellLabelText: String = ""
-    var checkMarkisHidden: Bool = true
-
-}
+//class ToDoCellModel: Codable {
+//    
+//    var cellLabelText: String = ""
+//    var checkMarkisHidden: Bool = true
+//
+//}
 
 

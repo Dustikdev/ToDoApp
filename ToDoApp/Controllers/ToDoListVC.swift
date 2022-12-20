@@ -6,14 +6,15 @@
 //
 
 import UIKit
+import CoreData
 
 class ToDoListVC: UIViewController {
     
-    let defaults = UserDefaults.standard
     let toDoListTableView = UITableView()
     var toDoArray = [ToDoCellModel]()
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathExtension("Items.plist")
-    let encoder = Coder()
+//    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathExtension("Items.plist") old plist implementation
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    let encoder = Coder() old plist implementation
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,7 @@ class ToDoListVC: UIViewController {
         toDoListTableView.dataSource = self
         toDoListTableView.delegate = self
         toDoListTableView.register(ToDoCell.self, forCellReuseIdentifier: Constants.CellIndentificators.toDoCellIdentificator)
-        toDoArray = encoder.decode(url: dataFilePath)
+//        toDoArray = encoder.decode(url: dataFilePath) old plist implementation
     }
     
     @objc func addButtonDidTapped() {
@@ -29,11 +30,23 @@ class ToDoListVC: UIViewController {
         let action = UIAlertAction(title: "Add Item", style: .default) { action in
             if let textField = alert.textFields?.first {
                 if let text = textField.text {
+                    let newItem = ToDoCellModel(context: self.context)
+                    newItem.cellLabelText = text
+                    newItem.checkMarkisHidden = true
+                    self.toDoArray.append(newItem)
+                    do {
+                        try self.context.save()
+                    } catch {
+                        print(error)
+                    }
+                    /*
+                    old plist implementation
                     let newItem = ToDoCellModel()
                     newItem.cellLabelText = text
                     self.toDoArray.append(newItem)
-//                    print(self.toDoArray.count)
+                    print(self.toDoArray.count)
                     self.encoder.encode(arr: self.toDoArray, url: self.dataFilePath)
+                    */
                     self.toDoListTableView.reloadData()
                 }
             }
@@ -61,7 +74,7 @@ extension ToDoListVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         toDoArray[indexPath.row].checkMarkisHidden = !toDoArray[indexPath.row].checkMarkisHidden
-        encoder.encode(arr: toDoArray, url: dataFilePath)
+//        encoder.encode(arr: toDoArray, url: dataFilePath) old plist implementation
         tableView.reloadData()
     }
     

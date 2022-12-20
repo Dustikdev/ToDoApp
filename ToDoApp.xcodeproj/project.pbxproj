@@ -17,6 +17,7 @@
 		7910F3542949EDFA008E75C3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7910F3532949EDFA008E75C3 /* Constants.swift */; };
 		7910F358294A2CB3008E75C3 /* ToDoCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7910F357294A2CB3008E75C3 /* ToDoCellModel.swift */; };
 		7910F35A294CC77F008E75C3 /* Coder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7910F359294CC77F008E75C3 /* Coder.swift */; };
+		792BD7FB2950BF1000F0BF1E /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 792BD7F92950BF1000F0BF1E /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		7910F3532949EDFA008E75C3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7910F357294A2CB3008E75C3 /* ToDoCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCellModel.swift; sourceTree = "<group>"; };
 		7910F359294CC77F008E75C3 /* Coder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coder.swift; sourceTree = "<group>"; };
+		792BD7FA2950BF1000F0BF1E /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				7910F357294A2CB3008E75C3 /* ToDoCellModel.swift */,
+				792BD7F92950BF1000F0BF1E /* DataModel.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				7910F33A2949E9A3008E75C3 /* SceneDelegate.swift in Sources */,
 				7910F3502949EAE7008E75C3 /* ToDoList+ExtUI.swift in Sources */,
 				7910F358294A2CB3008E75C3 /* ToDoCellModel.swift in Sources */,
+				792BD7FB2950BF1000F0BF1E /* DataModel.xcdatamodeld in Sources */,
 				7910F3522949EDC4008E75C3 /* ToDoCell.swift in Sources */,
 				7910F3542949EDFA008E75C3 /* Constants.swift in Sources */,
 			);
@@ -388,6 +392,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		792BD7F92950BF1000F0BF1E /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				792BD7FA2950BF1000F0BF1E /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 792BD7FA2950BF1000F0BF1E /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7910F32C2949E9A3008E75C3 /* Project object */;
 }
