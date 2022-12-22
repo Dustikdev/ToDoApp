@@ -100,8 +100,8 @@
 		7910F355294A2C96008E75C3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7910F357294A2CB3008E75C3 /* ToDoCellModel.swift */,
 				792BD7F92950BF1000F0BF1E /* DataModel.xcdatamodeld */,
+				7910F357294A2CB3008E75C3 /* ToDoCellModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
