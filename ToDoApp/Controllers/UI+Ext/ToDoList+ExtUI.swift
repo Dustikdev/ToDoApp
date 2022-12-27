@@ -49,7 +49,8 @@ extension ToDoListVC {
         standardAppearance.backgroundColor = UIColor(red: 0.7, green: 0.5, blue: 1, alpha: 1)
         navigationController?.navigationBar.standardAppearance = standardAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = standardAppearance
-        navigationItem.title = "ToDo"
+//        navigationItem.title = "ToDo"
+        navigationItem.title = selectedCategory?.name
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButtonDidTapped))
 //        navigationController?.navigationBar.prefersLargeTitles = true
     }

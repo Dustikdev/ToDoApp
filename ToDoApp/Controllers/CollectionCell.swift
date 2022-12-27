@@ -1,21 +1,20 @@
 //
-//  toDoCell.swift
+//  CollectionCell.swift
 //  ToDoApp
 //
-//  Created by Никита Швец on 14.12.2022.
+//  Created by Никита Швец on 22.12.2022.
 //
 
 import UIKit
 
-class ToDoCell: UITableViewCell {
-    
+class CollectionCell: UITableViewCell {
+
     let cellUIView = UIView()
     let cellLabel = UILabel()
-    let checkMark = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: Constants.CellIndentificators.toDoCellIdentificator)
-        configureToDoCellUI()
+        super.init(style: style, reuseIdentifier: Constants.CellIndentificators.collectionCellIdentificator)
+        configureCollectionCellUI()
     }
     
     required init?(coder: NSCoder) {
@@ -23,11 +22,10 @@ class ToDoCell: UITableViewCell {
     }
 }
 
-extension ToDoCell {
+extension CollectionCell {
     
-    func configureToDoCellUI() {
+    func configureCollectionCellUI() {
         configurecCellUIView()
-        configureCheckMark()
         configureCellLabel()
     }
     
@@ -43,21 +41,6 @@ extension ToDoCell {
             cellUIView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             cellUIView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             cellUIView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-            
-        ])
-        
-    }
-    
-    func configureCheckMark() {
-        cellUIView.addSubview(checkMark)
-        checkMark.translatesAutoresizingMaskIntoConstraints = false
-        checkMark.image = UIImage(systemName: "checkmark")
-        checkMark.isHidden = true
-        NSLayoutConstraint.activate([
-            checkMark.heightAnchor.constraint(equalToConstant: 20),
-            checkMark.widthAnchor.constraint(equalToConstant: 20),
-            checkMark.centerYAnchor.constraint(equalTo: cellUIView.centerYAnchor),
-            checkMark.trailingAnchor.constraint(equalTo: cellUIView.trailingAnchor, constant: -10)
         ])
     }
     
@@ -70,13 +53,20 @@ extension ToDoCell {
         NSLayoutConstraint.activate([
             cellLabel.centerYAnchor.constraint(equalTo: cellUIView.centerYAnchor),
             cellLabel.leadingAnchor.constraint(equalTo: cellUIView.leadingAnchor, constant: 10),
-            cellLabel.trailingAnchor.constraint(equalTo: cellUIView.trailingAnchor, constant: -40)
+            cellLabel.trailingAnchor.constraint(equalTo: cellUIView.trailingAnchor, constant: -10)
         ])
     }
     
     func configureForCellForRowAt(cell: ToDoCellModel) {
         cellLabel.text = cell.cellLabelText
-        checkMark.isHidden = cell.checkMarkisHidden
-    } 
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 
 }

@@ -16,6 +16,11 @@ class ToDoListVC: UIViewController {
     let toDoListTableView = UITableView()
     var toDoArray = [ToDoCellModel]()
     let searchBar = UISearchBar()
+    var selectedCategory: Category? {
+        didSet {
+            loadItems()
+        }
+    }
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
@@ -25,7 +30,7 @@ class ToDoListVC: UIViewController {
         toDoListTableView.delegate = self
         searchBar.delegate = self
         toDoListTableView.register(ToDoCell.self, forCellReuseIdentifier: Constants.CellIndentificators.toDoCellIdentificator)
-        loadItems()
+//        loadItems()
         //toDoArray = encoder.decode(url: dataFilePath) old plist implementation
     }
     
@@ -37,6 +42,7 @@ class ToDoListVC: UIViewController {
                     let newItem = ToDoCellModel(context: self.context)
                     newItem.cellLabelText = text
                     newItem.checkMarkisHidden = true
+                    newItem.parentCategory = self.selectedCategory
                     self.toDoArray.append(newItem)
                     self.saveItems()
                     /*
@@ -68,9 +74,16 @@ class ToDoListVC: UIViewController {
         toDoListTableView.reloadData()
     }
     
-    func loadItems(with request: NSFetchRequest<ToDoCellModel> = ToDoCellModel.fetchRequest()) {
+    func loadItems(with request: NSFetchRequest<ToDoCellModel> = ToDoCellModel.fetchRequest(), with predicate: NSPredicate? = nil) {
+        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
+        } else {
+            request.predicate = categoryPredicate
+        }
+        
         do {
-           toDoArray = try context.fetch(request)
+            toDoArray = try context.fetch(request)
         } catch {
             print("error \(error)")
         }
@@ -112,10 +125,7 @@ extension ToDoListVC: UITableViewDataSource, UITableViewDelegate {
 extension ToDoListVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let request: NSFetchRequest<ToDoCellModel> = ToDoCellModel.fetchRequest()
-        request.predicate = NSPredicate(format: "cellLabelText CONTAINS[cd] %@", searchBar.text!)
-        request.sortDescriptors = [NSSortDescriptor(key: "cellLabelText", ascending: true)]
-        loadItems(with: request)
+        loadWithRequest()
         searchBar.resignFirstResponder()
     }
     
@@ -127,11 +137,15 @@ extension ToDoListVC: UISearchBarDelegate {
             }
             
         } else {
-            let request: NSFetchRequest<ToDoCellModel> = ToDoCellModel.fetchRequest()
-            request.predicate = NSPredicate(format: "cellLabelText CONTAINS[cd] %@", searchBar.text!)
-            request.sortDescriptors = [NSSortDescriptor(key: "cellLabelText", ascending: true)]
-            loadItems(with: request)
+            loadWithRequest()
         }
+    }
+    
+    func loadWithRequest() {
+        let request: NSFetchRequest<ToDoCellModel> = ToDoCellModel.fetchRequest()
+        let predicate = NSPredicate(format: "cellLabelText CONTAINS[cd] %@", searchBar.text!)
+        request.sortDescriptors = [NSSortDescriptor(key: "cellLabelText", ascending: true)]
+        loadItems(with: request, with: predicate)
     }
     
 }

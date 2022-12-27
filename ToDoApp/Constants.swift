@@ -11,6 +11,7 @@ enum Constants {
     
     enum CellIndentificators {
         static let toDoCellIdentificator = "toDoCellIdentificator"
+        static let collectionCellIdentificator = "collectionCellIdentificator"
     }
     
 }
