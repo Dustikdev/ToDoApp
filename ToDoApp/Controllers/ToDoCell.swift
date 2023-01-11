@@ -74,7 +74,7 @@ extension ToDoCell {
         ])
     }
     
-    func configureForCellForRowAt(cell: ToDoCellModel) {
+    func configureForCellForRowAt(cell: Item) {
         cellLabel.text = cell.cellLabelText
         checkMark.isHidden = cell.checkMarkisHidden
     } 

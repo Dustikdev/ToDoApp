@@ -57,16 +57,7 @@ extension CollectionCell {
         ])
     }
     
-    func configureForCellForRowAt(cell: ToDoCellModel) {
-        cellLabel.text = cell.cellLabelText
+    func configureForCellForRowAt(cell: Category) {
+        cellLabel.text = cell.name
     }
-    
-    
-    
-    
-    
-    
-    
-    
-
 }
