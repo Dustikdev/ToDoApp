@@ -11,6 +11,7 @@ import RealmSwift
 class Item: Object {
     @Persisted var cellLabelText: String = ""
     @Persisted var checkMarkisHidden: Bool = true
+    @Persisted var createdDate: Date?
     @Persisted(originProperty: "items") var parentCategory: LinkingObjects<Category>
 }
 
