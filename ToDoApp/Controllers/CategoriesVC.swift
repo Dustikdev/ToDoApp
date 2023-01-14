@@ -17,11 +17,11 @@ class CategoriesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadCategories()
         configureUI()
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
         categoryTableView.register(CollectionCell.self, forCellReuseIdentifier: Constants.CellIndentificators.collectionCellIdentificator)
-        loadCategories()
     }
     
     @objc func didAddButtonCategoryTapped() {

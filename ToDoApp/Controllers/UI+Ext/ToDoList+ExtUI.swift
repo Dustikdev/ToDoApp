@@ -35,8 +35,8 @@ extension ToDoListVC {
     func configureSearchBar() {
         view.addSubview(searchBar)
         searchBar.translatesAutoresizingMaskIntoConstraints = false
-        let color = UIColor(hex: toDoItems?.first?.itemColor ?? "C7C7CC")
-        searchBar.barTintColor = color
+        searchBar.searchTextField.backgroundColor = .white
+        setSearchBarColor()
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -46,17 +46,24 @@ extension ToDoListVC {
     }
     
     func configureNavigationBar() {
-        let color = UIColor(hex: toDoItems?.first?.itemColor ?? "C7C7CC")
         let standardAppearance = UINavigationBarAppearance()
         standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         standardAppearance.configureWithOpaqueBackground()
 //        standardAppearance.backgroundColor = UIColor(red: 0.7, green: 0.5, blue: 1, alpha: 1)
-        standardAppearance.backgroundColor = color
+        setNavBarColor(appearance: standardAppearance)
         navigationController?.navigationBar.standardAppearance = standardAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = standardAppearance
-//        navigationItem.title = "ToDo"
         navigationItem.title = selectedCategory?.name
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButtonDidTapped))
-//        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    func setNavBarColor(appearance: UINavigationBarAppearance) {
+        let color = UIColor(hex: toDoItems?.first?.itemColor ?? "C7C7CC")
+        appearance.backgroundColor = color
+    }
+    
+    func setSearchBarColor() {
+        let color = UIColor(hex: toDoItems?.first?.itemColor ?? "C7C7CC")
+        searchBar.barTintColor = color
     }
 }

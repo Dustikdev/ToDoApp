@@ -23,17 +23,17 @@ class ToDoListVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadItems()
         configureUI()
         toDoListTableView.dataSource = self
         toDoListTableView.delegate = self
         searchBar.delegate = self
         toDoListTableView.register(ToDoCell.self, forCellReuseIdentifier: Constants.CellIndentificators.toDoCellIdentificator)
-        loadItems()
     }
     
     @objc func addButtonDidTapped() {
         let alert = UIAlertController(title: "Add new ToDo action", message: "", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Add Item", style: .default) { action in
+        let action = UIAlertAction(title: "Add Item", style: .default) { [self] action in
             if let textField = alert.textFields?.first {
                 if let text = textField.text {
                     if let currentItem = self.selectedCategory {
@@ -48,6 +48,8 @@ class ToDoListVC: UIViewController {
                                 newItem.cellLabelText = text
                                 newItem.createdDate = Date()
                                 currentItem.items.append(newItem)
+                                self.setSearchBarColor()
+                                configureNavigationBar()
                             })
                         } catch {
                             print(error)
