@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import SwipeCellKit
 
 class ToDoListVC: UIViewController {
     
@@ -35,13 +36,13 @@ class ToDoListVC: UIViewController {
         let action = UIAlertAction(title: "Add Item", style: .default) { action in
             if let textField = alert.textFields?.first {
                 if let text = textField.text {
-                    if let currendItem = self.selectedCategory {
+                    if let currentItem = self.selectedCategory {
                         do {
                             try self.realm.write({
                                 let newItem = Item()
                                 newItem.cellLabelText = text
                                 newItem.createdDate = Date()
-                                currendItem.items.append(newItem)
+                                currentItem.items.append(newItem)
                             })
                         } catch {
                             print(error)
@@ -74,6 +75,7 @@ extension ToDoListVC: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIndentificators.toDoCellIdentificator) as! ToDoCell
+        cell.delegate = self
         if let item = toDoItems?[indexPath.row] {
             cell.configureForCellForRowAt(cell: item)
         } else {
@@ -129,4 +131,34 @@ extension ToDoListVC: UISearchBarDelegate {
         toDoListTableView.reloadData()
     }
 
+}
+
+extension ToDoListVC: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeCellKit.SwipeActionsOrientation) -> [SwipeCellKit.SwipeAction]? {
+        guard orientation == .right else { return nil }
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            if let deletedCategory = self.toDoItems?[indexPath.row] {
+                do {
+                    try self.realm.write({
+                        self.realm.delete(deletedCategory)
+                    })
+                } catch {
+                    print(error)
+                }
+            }
+            self.toDoListTableView.reloadData()
+        }
+
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "delete")
+        return [deleteAction]
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = .destructive(automaticallyDelete: false)
+        options.transitionStyle = .border
+        return options
+    }
 }

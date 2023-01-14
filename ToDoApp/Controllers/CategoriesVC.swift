@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import SwipeCellKit
 
 class CategoriesVC: UIViewController {
     
@@ -69,6 +70,7 @@ extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIndentificators.collectionCellIdentificator) as! CollectionCell
+        cell.delegate = self
         cell.cellLabel.text = categories?[indexPath.row].name ?? "No categories"
         return cell
     }
@@ -88,5 +90,34 @@ extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
     {
         70
     }
+}
+
+extension CategoriesVC: SwipeTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeCellKit.SwipeActionsOrientation) -> [SwipeCellKit.SwipeAction]? {
+        guard orientation == .right else { return nil }
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            if let deletedCategory = self.categories?[indexPath.row] {
+                do {
+                    try self.realm.write({
+                        self.realm.delete(deletedCategory)
+                    })
+                } catch {
+                    print(error)
+                }
+            }
+            self.categoryTableView.reloadData()
+        }
+
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "delete")
+
+        return [deleteAction]
+    }
     
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = .destructive(automaticallyDelete: false)
+        options.transitionStyle = .border
+        return options
+    }
 }

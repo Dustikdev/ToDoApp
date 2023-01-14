@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class CollectionCell: UITableViewCell {
+class CollectionCell: SwipeTableViewCell {
 
     let cellUIView = UIView()
     let cellLabel = UILabel()
