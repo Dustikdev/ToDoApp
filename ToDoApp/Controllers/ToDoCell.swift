@@ -78,6 +78,7 @@ extension ToDoCell {
     func configureForCellForRowAt(cell: Item) {
         cellLabel.text = cell.cellLabelText
         checkMark.isHidden = cell.checkMarkisHidden
-    } 
-
+        let color = UIColor(hex: cell.itemColor)
+        cellUIView.backgroundColor = color
+    }
 }

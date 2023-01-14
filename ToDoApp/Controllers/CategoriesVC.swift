@@ -30,6 +30,11 @@ class CategoriesVC: UIViewController {
             if let textField = alert.textFields?.first {
                 if let text = textField.text {
                     let newCategory = Category()
+                    let color = UIColor.random()
+                    let colorHex = color.toHex
+                    if let newColorHex = colorHex {
+                        newCategory.categoryColor = newColorHex
+                    }
                     newCategory.name = text
                     self.save(category: newCategory)
                 }
@@ -72,6 +77,10 @@ extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIndentificators.collectionCellIdentificator) as! CollectionCell
         cell.delegate = self
         cell.cellLabel.text = categories?[indexPath.row].name ?? "No categories"
+        if let color = categories?[indexPath.row].categoryColor {
+            let cellColor = UIColor(hex: color)
+            cell.cellUIView.backgroundColor = cellColor
+        }
         return cell
     }
     
@@ -107,10 +116,7 @@ extension CategoriesVC: SwipeTableViewCellDelegate {
             }
             self.categoryTableView.reloadData()
         }
-
-        // customize the action appearance
         deleteAction.image = UIImage(named: "delete")
-
         return [deleteAction]
     }
     

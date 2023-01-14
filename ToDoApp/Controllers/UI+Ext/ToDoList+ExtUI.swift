@@ -23,6 +23,7 @@ extension ToDoListVC {
     func configureToDoListTableView() {
         view.addSubview(toDoListTableView)
         toDoListTableView.translatesAutoresizingMaskIntoConstraints = false
+        toDoListTableView.separatorStyle = .none
         NSLayoutConstraint.activate([
             toDoListTableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             toDoListTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -34,6 +35,8 @@ extension ToDoListVC {
     func configureSearchBar() {
         view.addSubview(searchBar)
         searchBar.translatesAutoresizingMaskIntoConstraints = false
+        let color = UIColor(hex: toDoItems?.first?.itemColor ?? "C7C7CC")
+        searchBar.barTintColor = color
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -43,10 +46,12 @@ extension ToDoListVC {
     }
     
     func configureNavigationBar() {
+        let color = UIColor(hex: toDoItems?.first?.itemColor ?? "C7C7CC")
         let standardAppearance = UINavigationBarAppearance()
         standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         standardAppearance.configureWithOpaqueBackground()
-        standardAppearance.backgroundColor = UIColor(red: 0.7, green: 0.5, blue: 1, alpha: 1)
+//        standardAppearance.backgroundColor = UIColor(red: 0.7, green: 0.5, blue: 1, alpha: 1)
+        standardAppearance.backgroundColor = color
         navigationController?.navigationBar.standardAppearance = standardAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = standardAppearance
 //        navigationItem.title = "ToDo"

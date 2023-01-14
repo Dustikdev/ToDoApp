@@ -20,6 +20,7 @@
 		793B3756295B3CB300D23B9C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 793B3755295B3CB300D23B9C /* RealmSwift */; };
 		793B3759295B430600D23B9C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B3758295B430600D23B9C /* Category.swift */; };
 		793B3761297058B700D23B9C /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 793B3760297058B700D23B9C /* SwipeCellKit */; };
+		793B37652972DFD900D23B9C /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B37642972DFD900D23B9C /* UIColor+Ext.swift */; };
 		7998B56C2954A42C008E2966 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998B56B2954A42C008E2966 /* CategoriesVC.swift */; };
 		7998B56E2954A4A3008E2966 /* CategoriesVC+ExtUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998B56D2954A4A3008E2966 /* CategoriesVC+ExtUI.swift */; };
 		7998B5702954A71D008E2966 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998B56F2954A71D008E2966 /* CollectionCell.swift */; };
@@ -38,6 +39,7 @@
 		7910F3532949EDFA008E75C3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7910F357294A2CB3008E75C3 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		793B3758295B430600D23B9C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		793B37642972DFD900D23B9C /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		7998B56B2954A42C008E2966 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		7998B56D2954A4A3008E2966 /* CategoriesVC+ExtUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesVC+ExtUI.swift"; sourceTree = "<group>"; };
 		7998B56F2954A71D008E2966 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				7910F3532949EDFA008E75C3 /* Constants.swift */,
 				7910F3372949E9A3008E75C3 /* AppDelegate.swift */,
 				7910F3392949E9A3008E75C3 /* SceneDelegate.swift */,
+				793B37642972DFD900D23B9C /* UIColor+Ext.swift */,
 				7910F34D2949EA95008E75C3 /* Controllers */,
 				7910F355294A2C96008E75C3 /* Model */,
 				7910F3402949E9A5008E75C3 /* Assets.xcassets */,
@@ -202,6 +205,7 @@
 				7910F33A2949E9A3008E75C3 /* SceneDelegate.swift in Sources */,
 				7998B56C2954A42C008E2966 /* CategoriesVC.swift in Sources */,
 				7910F3502949EAE7008E75C3 /* ToDoList+ExtUI.swift in Sources */,
+				793B37652972DFD900D23B9C /* UIColor+Ext.swift in Sources */,
 				7910F358294A2CB3008E75C3 /* Item.swift in Sources */,
 				7998B56E2954A4A3008E2966 /* CategoriesVC+ExtUI.swift in Sources */,
 				793B3759295B430600D23B9C /* Category.swift in Sources */,

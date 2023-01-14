@@ -18,6 +18,7 @@ extension CategoriesVC {
     func configureToDoListTableView() {
         view.addSubview(categoryTableView)
         categoryTableView.translatesAutoresizingMaskIntoConstraints = false
+        categoryTableView.separatorStyle = .none
         NSLayoutConstraint.activate([
             categoryTableView.topAnchor.constraint(equalTo: view.topAnchor),
             categoryTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -27,10 +28,12 @@ extension CategoriesVC {
     }
     
     func configureNavigationBar() {
+        let color = UIColor(hex: categories?.first?.categoryColor ?? "C7C7CC")
         let standardAppearance = UINavigationBarAppearance()
         standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         standardAppearance.configureWithOpaqueBackground()
-        standardAppearance.backgroundColor = UIColor(red: 0.7, green: 0.5, blue: 1, alpha: 1)
+        standardAppearance.backgroundColor = color
+//        standardAppearance.backgroundColor = UIColor(red: 0.7, green: 0.5, blue: 1, alpha: 1)
         navigationController?.navigationBar.standardAppearance = standardAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = standardAppearance
         navigationItem.title = "Categories"

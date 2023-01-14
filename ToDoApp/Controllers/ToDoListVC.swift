@@ -40,6 +40,11 @@ class ToDoListVC: UIViewController {
                         do {
                             try self.realm.write({
                                 let newItem = Item()
+                                let color = UIColor.random()
+                                let colorHex = color.toHex
+                                if let newColor = colorHex {
+                                    newItem.itemColor = newColor
+                                }
                                 newItem.cellLabelText = text
                                 newItem.createdDate = Date()
                                 currentItem.items.append(newItem)
