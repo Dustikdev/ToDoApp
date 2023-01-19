@@ -49,7 +49,6 @@ extension ToDoListVC {
         let standardAppearance = UINavigationBarAppearance()
         standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         standardAppearance.configureWithOpaqueBackground()
-//        standardAppearance.backgroundColor = UIColor(red: 0.7, green: 0.5, blue: 1, alpha: 1)
         setNavBarColor(appearance: standardAppearance)
         navigationController?.navigationBar.standardAppearance = standardAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = standardAppearance
@@ -58,8 +57,13 @@ extension ToDoListVC {
     }
     
     func setNavBarColor(appearance: UINavigationBarAppearance) {
-        let color = UIColor(hex: toDoItems?.first?.itemColor ?? "C7C7CC")
-        appearance.backgroundColor = color
+        if let color = selectedCategory?.categoryColor {
+            let newColor = UIColor(hex: color)
+            appearance.backgroundColor = newColor
+        } else {
+            let color = UIColor(hex: toDoItems?.first?.itemColor ?? "C7C7CC")
+            appearance.backgroundColor = color
+        }
     }
     
     func setSearchBarColor() {

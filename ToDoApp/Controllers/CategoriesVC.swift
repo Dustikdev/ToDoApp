@@ -24,6 +24,10 @@ class CategoriesVC: UIViewController {
         categoryTableView.register(CollectionCell.self, forCellReuseIdentifier: Constants.CellIndentificators.collectionCellIdentificator)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+            configureNavigationBar()
+    }
+    
     @objc func didAddButtonCategoryTapped() {
         let alert = UIAlertController(title: "Add new category", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add category", style: .default) { action in
@@ -37,6 +41,7 @@ class CategoriesVC: UIViewController {
                     }
                     newCategory.name = text
                     self.save(category: newCategory)
+                    self.configureNavigationBar()
                 }
             }
         }

@@ -40,9 +40,8 @@ class ToDoListVC: UIViewController {
                         do {
                             try self.realm.write({
                                 let newItem = Item()
-                                let color = UIColor.random()
-                                let colorHex = color.toHex
-                                if let newColor = colorHex {
+                                let color = selectedCategory?.categoryColor
+                                if let newColor = color {
                                     newItem.itemColor = newColor
                                 }
                                 newItem.cellLabelText = text
@@ -82,9 +81,10 @@ extension ToDoListVC: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIndentificators.toDoCellIdentificator) as! ToDoCell
+//        let cell = ToDoCell()
         cell.delegate = self
         if let item = toDoItems?[indexPath.row] {
-            cell.configureForCellForRowAt(cell: item)
+            cell.configureForCellForRowAt(cell: item, row: indexPath.row, count: toDoItems?.count ?? 0)
         } else {
             cell.cellLabel.text = "No items"
         }
@@ -157,7 +157,6 @@ extension ToDoListVC: SwipeTableViewCellDelegate {
             self.toDoListTableView.reloadData()
         }
 
-        // customize the action appearance
         deleteAction.image = UIImage(named: "delete")
         return [deleteAction]
     }

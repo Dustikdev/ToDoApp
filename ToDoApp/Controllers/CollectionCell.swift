@@ -33,9 +33,6 @@ extension CollectionCell {
     func configurecCellUIView() {
         contentView.addSubview(cellUIView)
         cellUIView.translatesAutoresizingMaskIntoConstraints = false
-//        cellUIView.backgroundColor = .systemGray3
-//        let botConstraint = cellUIView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-//        botConstraint.priority = UILayoutPriority(999)
         NSLayoutConstraint.activate([
             cellUIView.heightAnchor.constraint(equalToConstant: 70),
             cellUIView.topAnchor.constraint(equalTo: contentView.topAnchor),

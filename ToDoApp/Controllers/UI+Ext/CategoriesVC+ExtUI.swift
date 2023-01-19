@@ -31,7 +31,6 @@ extension CategoriesVC {
         let standardAppearance = UINavigationBarAppearance()
         standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         standardAppearance.configureWithOpaqueBackground()
-//        standardAppearance.backgroundColor = UIColor(red: 0.7, green: 0.5, blue: 1, alpha: 1)
         setNavBarColor(apperance: standardAppearance)
         navigationController?.navigationBar.standardAppearance = standardAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = standardAppearance
